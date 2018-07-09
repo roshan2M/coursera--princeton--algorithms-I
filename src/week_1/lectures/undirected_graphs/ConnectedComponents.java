@@ -41,6 +41,10 @@ public class ConnectedComponents {
 		return false;
 	}
 
+	public int count() {
+		return this.connectedComponents.size();
+	}
+
 	public List<List<Integer>> connectedComponents() {
 		return this.connectedComponents;
 	}
