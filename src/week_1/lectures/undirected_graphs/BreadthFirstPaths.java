@@ -2,7 +2,7 @@ package week_1.lectures.undirected_graphs;
 
 import com.google.common.graph.Graph;
 
-import java.util.*;
+import java.util.LinkedList;
 
 public class BreadthFirstPaths {
 
