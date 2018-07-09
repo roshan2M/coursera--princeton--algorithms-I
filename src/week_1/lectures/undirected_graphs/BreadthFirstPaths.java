@@ -32,4 +32,12 @@ public class BreadthFirstPaths {
 		}
 	}
 
+	public boolean[] visited() {
+		return this.visited;
+	}
+
+	public int[] edgeTo() {
+		return this.edgeTo;
+	}
+
 }
