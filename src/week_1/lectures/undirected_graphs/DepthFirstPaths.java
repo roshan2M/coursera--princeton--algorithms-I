@@ -4,9 +4,8 @@ import com.google.common.graph.Graph;
 
 public class DepthFirstPaths {
 
-	public boolean[] visited;
-	public int[] edgeTo;
-	public int s;
+	private boolean[] visited;
+	private int[] edgeTo;
 
 	public DepthFirstPaths(Graph G, int s) {
 		visited = new boolean[G.edges().size()];
@@ -14,7 +13,7 @@ public class DepthFirstPaths {
 		dfs(G, s);
 	}
 
-	public void dfs(Graph G, int v) {
+	private void dfs(Graph G, int v) {
 		visited[v] = true;
 		for (Object w : G.adjacentNodes(v)) {
 			if (!visited[(int) w]) {
