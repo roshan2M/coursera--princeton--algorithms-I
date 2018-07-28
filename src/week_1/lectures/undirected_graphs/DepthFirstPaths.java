@@ -8,7 +8,7 @@ public class DepthFirstPaths {
 	private int[] edgeTo;
 
 	public DepthFirstPaths(Graph G, int s) {
-		visited = new boolean[G.edges().size()];
+		visited = new boolean[G.nodes().size()];
 		edgeTo = new int[G.edges().size()];
 		dfs(G, s);
 	}
