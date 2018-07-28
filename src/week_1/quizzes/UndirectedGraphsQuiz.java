@@ -1,26 +1,26 @@
 package week_1.quizzes;
 
-import com.google.common.graph.Graph;
+import com.google.common.graph.ImmutableGraph;
 import javafx.util.Pair;
 
 import java.util.Arrays;
 import java.util.Stack;
 
-public class GraphProblems {
+public class UndirectedGraphsQuiz {
 
 	/**
 	 * @param G
 	 * @param s: source node in graph G
 	 * @return boolean array of visited nodes in G
 	 */
-	public static boolean[] iterativeDFS(Graph G, int s) {
+	public static boolean[] iterativeDFS(ImmutableGraph G, int s) {
 		boolean[] visited = new boolean[G.nodes().size()];
 		Stack<Integer> nodeStack = new Stack<>();
 		nodeStack.push(s);
 
 		while (!nodeStack.isEmpty()) {
-			s = nodeStack.peek();
-			nodeStack.pop();
+			s = nodeStack.pop();
+
 			if (!visited[s]) {
 				visited[s] = true;
 				for (Object i : G.adjacentNodes(s)) {
@@ -35,7 +35,7 @@ public class GraphProblems {
 	 * @param G: connected graph with no cycles
 	 * @return length of longest single path in G
 	 */
-	public static int longestSimplePath(Graph G) {
+	public static int longestSimplePath(ImmutableGraph G) {
 		Pair<Integer, Integer> path = longestPath(G, 0);
 		Pair<Integer, Integer> longestPath = longestPath(G, path.getKey());
 
@@ -47,7 +47,7 @@ public class GraphProblems {
 	 * @param u: node to find the farthest node from
 	 * @return pair containing farthest node from u (key) and distance to u (value)
 	 */
-	public static Pair<Integer, Integer> longestPath(Graph G, int u) {
+	private static Pair<Integer, Integer> longestPath(ImmutableGraph G, int u) {
 		int[] distance = new int[G.nodes().size()];
 		Arrays.fill(distance, -1);
 
@@ -55,8 +55,7 @@ public class GraphProblems {
 		nodeStack.push(u);
 
 		while (!nodeStack.isEmpty()) {
-			int m = nodeStack.peek();
-			nodeStack.pop();
+			int m = nodeStack.pop();
 
 			for (Object neighbour : G.adjacentNodes(m)) {
 				int n = (int) neighbour;

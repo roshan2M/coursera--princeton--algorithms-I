@@ -1,6 +1,6 @@
 package week_1.lectures.undirected_graphs;
 
-import com.google.common.graph.Graph;
+import com.google.common.graph.ImmutableGraph;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class ConnectedComponents {
 	private List<List<Integer>> connectedComponents;
 	private boolean[] visited;
 
-	ConnectedComponents(Graph G) {
+	ConnectedComponents(ImmutableGraph G) {
 		visited = new boolean[G.edges().size()];
 		connectedComponents = new ArrayList<>();
 		for (Object v : G.edges()) {
@@ -20,7 +20,7 @@ public class ConnectedComponents {
 		}
 	}
 
-	private void addConnectedComponent(Graph G, int v) {
+	private void addConnectedComponent(ImmutableGraph G, int v) {
 		List<Integer> component = new ArrayList<>();
 		DepthFirstPaths searchNode = new DepthFirstPaths(G, v);
 		boolean[] visitedNodes = searchNode.visited();
