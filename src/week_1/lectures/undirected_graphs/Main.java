@@ -3,6 +3,8 @@ package week_1.lectures.undirected_graphs;
 import com.google.common.graph.*;
 import week_1.quizzes.UndirectedGraphsQuiz;
 
+import java.util.Arrays;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -15,7 +17,9 @@ public class Main {
 		G.putEdge(1, 4);
 		G.putEdge(4, 7);
 
-		System.out.println(UndirectedGraphsQuiz.longestSimplePath(ImmutableGraph.copyOf(G)));
+		System.out.println(UndirectedGraphsQuiz.graphDiameter(ImmutableGraph.copyOf(G)));
+		System.out.println(Arrays.toString(UndirectedGraphsQuiz.iterativeDFS(ImmutableGraph.copyOf(G), 0)));
+		System.out.println(UndirectedGraphsQuiz.graphCenterNaive(ImmutableGraph.copyOf(G)));
 	}
 
 }

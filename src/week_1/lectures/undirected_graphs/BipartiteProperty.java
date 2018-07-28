@@ -1,6 +1,6 @@
 package week_1.lectures.undirected_graphs;
 
-import com.google.common.graph.Graph;
+import com.google.common.graph.ImmutableGraph;
 
 public class BipartiteProperty {
 
@@ -11,7 +11,10 @@ public class BipartiteProperty {
 	boolean[] visited;
 	boolean isBipartite;
 
-	public BipartiteProperty(Graph G) {
+	/**
+	 * @param G: connected graph
+	 */
+	public BipartiteProperty(ImmutableGraph G) {
 		colourVertices = new int[G.nodes().size()];
 		visited = new boolean[G.nodes().size()];
 
@@ -19,16 +22,17 @@ public class BipartiteProperty {
 		isBipartite = isBipartite(G, 0);
 	}
 
-	private boolean isBipartite(Graph G, int s) {
-		for (Object i : G.nodes()) {
-			if (!visited[(int) i]) {
-				visited[(int) i] = true;
-				colourVertices[(int) i] = colourVertices[s] == RED ? BLUE : RED;
+	private boolean isBipartite(ImmutableGraph G, int s) {
+		for (Object i : G.adjacentNodes(s)) {
+			int v = (int) i;
+			if (!visited[v]) {
+				visited[v] = true;
+				colourVertices[v] = (colourVertices[s] == RED ? BLUE : RED);
 
-				if (!isBipartite(G, (int) i)) {
+				if (!isBipartite(G, v)) {
 					return false;
 				}
-			} else if (colourVertices[(int) i] == colourVertices[s]) {
+			} else if (colourVertices[v] == colourVertices[s]) {
 				return false;
 			}
 		}
