@@ -3,10 +3,7 @@ package week_1.quizzes;
 import com.google.common.graph.Graphs;
 import com.google.common.graph.ImmutableGraph;
 import com.google.common.graph.MutableGraph;
-import com.google.common.graph.MutableValueGraph;
 import javafx.util.Pair;
-
-import java.util.Iterator;
 import java.util.Stack;
 
 public class UndirectedGraphsQuiz {
