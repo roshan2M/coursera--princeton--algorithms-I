@@ -2,50 +2,43 @@ package week_1.lectures.undirected_graphs;
 
 import com.google.common.graph.ImmutableGraph;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ConnectedComponents {
 
-	private List<List<Integer>> connectedComponents;
+	private int[] connectedComponents;
 	private boolean[] visited;
+	private int index = 0;
 
 	ConnectedComponents(ImmutableGraph G) {
-		visited = new boolean[G.edges().size()];
-		connectedComponents = new ArrayList<>();
-		for (Object v : G.edges()) {
+		visited = new boolean[G.nodes().size()];
+		connectedComponents = new int[G.nodes().size()];
+
+		for (Object v : G.nodes()) {
 			if (!visited[(int) v]) {
-				addConnectedComponent(G, (int) v);
+				addConnectedComponent(G, (int) v, index);
+				index++;
 			}
 		}
 	}
 
-	private void addConnectedComponent(ImmutableGraph G, int v) {
-		List<Integer> component = new ArrayList<>();
-		DepthFirstPaths searchNode = new DepthFirstPaths(G, v);
-		boolean[] visitedNodes = searchNode.visited();
-		for (int i = 0; i < visitedNodes.length; i++) {
-			if (visitedNodes[i]) {
-				component.add(i);
+	private void addConnectedComponent(ImmutableGraph G, int v, int index) {
+		connectedComponents[v] = index;
+		boolean[] connectedNodes = (new DepthFirstPaths(G, v)).visited();
+		for (int i = 0; i < connectedNodes.length; i++) {
+			if (connectedNodes[i]) {
+				connectedComponents[i] = index;
 			}
 		}
-		connectedComponents.add(component);
 	}
 
 	public boolean connected(int v, int w) {
-		for (List<Integer> component : connectedComponents){
-			if (component.contains(v) && component.contains(w)) {
-				return true;
-			}
-		}
-		return false;
+		return connectedComponents[v] == connectedComponents[w];
 	}
 
 	public int count() {
-		return this.connectedComponents.size();
+		return index + 1;
 	}
 
-	public List<List<Integer>> connectedComponents() {
+	public int[] connectedComponents() {
 		return this.connectedComponents;
 	}
 
