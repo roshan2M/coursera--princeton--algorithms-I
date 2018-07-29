@@ -1,6 +1,7 @@
 package week_1.lectures.undirected_graphs;
 
 import com.google.common.graph.*;
+import week_1.lectures.directed_graphs.WebCrawler;
 import week_1.quizzes.UndirectedGraphsQuiz;
 
 import java.util.Arrays;
@@ -8,6 +9,10 @@ import java.util.Arrays;
 public class Main {
 
 	public static void main(String[] args) {
+		webCrawlerTest();
+	}
+
+	public static void graphTests() {
 		MutableGraph G = GraphBuilder.undirected().build();
 		G.putEdge(0, 1);
 		G.putEdge(0, 2);
@@ -27,6 +32,10 @@ public class Main {
 		G2.putEdge(1, 2);
 
 		System.out.println(Arrays.toString(UndirectedGraphsQuiz.eulerCycle(ImmutableGraph.copyOf(G2))));
+	}
+
+	public static void webCrawlerTest() {
+		WebCrawler princetonWebCrawler = new WebCrawler("https://www.princeton.edu");
 	}
 
 }
