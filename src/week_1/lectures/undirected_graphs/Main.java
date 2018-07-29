@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class Main {
 
 	public static void main(String[] args) {
-		webCrawlerTest();
+		webCrawlerTest("https://www.princeton.edu");
 	}
 
 	public static void graphTests() {
@@ -34,8 +34,8 @@ public class Main {
 		System.out.println(Arrays.toString(UndirectedGraphsQuiz.eulerCycle(ImmutableGraph.copyOf(G2))));
 	}
 
-	public static void webCrawlerTest() {
-		WebCrawler princetonWebCrawler = new WebCrawler("https://www.princeton.edu");
+	public static void webCrawlerTest(String root) {
+		WebCrawler princetonWebCrawler = new WebCrawler(root);
 	}
 
 }
