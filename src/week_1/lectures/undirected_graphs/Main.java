@@ -20,6 +20,13 @@ public class Main {
 		System.out.println(UndirectedGraphsQuiz.graphDiameter(ImmutableGraph.copyOf(G)));
 		System.out.println(Arrays.toString(UndirectedGraphsQuiz.iterativeDFS(ImmutableGraph.copyOf(G), 0)));
 		System.out.println(UndirectedGraphsQuiz.graphCenterNaive(ImmutableGraph.copyOf(G)));
+
+		MutableGraph G2 = GraphBuilder.undirected().build();
+		G2.putEdge(0, 1);
+		G2.putEdge(0, 2);
+		G2.putEdge(1, 2);
+
+		System.out.println(Arrays.toString(UndirectedGraphsQuiz.eulerCycle(ImmutableGraph.copyOf(G2))));
 	}
 
 }
