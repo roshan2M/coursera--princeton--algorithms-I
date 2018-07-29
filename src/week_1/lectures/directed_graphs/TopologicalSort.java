@@ -1,5 +1,6 @@
 package week_1.lectures.directed_graphs;
 
+import com.google.common.graph.ImmutableGraph;
 import com.google.common.graph.MutableGraph;
 
 import java.util.Stack;
@@ -9,7 +10,7 @@ public class TopologicalSort {
 	private boolean[] visited;
 	private Stack<Integer> reversePost;
 
-	public TopologicalSort(MutableGraph G) {
+	public TopologicalSort(ImmutableGraph G) {
 		visited = new boolean[G.nodes().size()];
 		reversePost = new Stack<>();
 
@@ -20,7 +21,7 @@ public class TopologicalSort {
 		}
 	}
 
-	private void dfs(MutableGraph G, int v) {
+	private void dfs(ImmutableGraph G, int v) {
 		visited[v] = true;
 		for (Object i : G.adjacentNodes(v)) {
 			if (!visited[(int) i]) {

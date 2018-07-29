@@ -6,9 +6,9 @@ public class DepthFirstPaths {
 
 	private boolean[] visited;
 
-	public DepthFirstPaths(ImmutableGraph G, int s) {
+	public DepthFirstPaths(ImmutableGraph G, int v) {
 		visited = new boolean[G.nodes().size()];
-		dfs(G, s);
+		dfs(G, v);
 	}
 
 	private void dfs(ImmutableGraph G, int v) {

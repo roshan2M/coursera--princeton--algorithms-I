@@ -30,20 +30,16 @@ public class ConnectedComponents {
 		}
 	}
 
-	public boolean connected(int v, int w) {
-		return connectedComponents[v] == connectedComponents[w];
-	}
-
-	public int count() {
-		return index + 1;
-	}
-
 	public int[] connectedComponents() {
 		return this.connectedComponents;
 	}
 
-	public boolean[] visited() {
-		return this.visited;
+	public int components() {
+		return this.index + 1;
+	}
+
+	public boolean connected(int v, int w) {
+		return this.connectedComponents[v] == this.connectedComponents[w];
 	}
 
 }
