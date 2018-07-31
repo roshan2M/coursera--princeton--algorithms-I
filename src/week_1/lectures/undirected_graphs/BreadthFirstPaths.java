@@ -1,17 +1,20 @@
 package week_1.lectures.undirected_graphs;
 
-import com.google.common.graph.Graph;
 import com.google.common.graph.ImmutableGraph;
 
-import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 public class BreadthFirstPaths {
 
 	private boolean[] visited;
+	private int[] distance;
+	private int[] edgeTo;
 
 	public BreadthFirstPaths(ImmutableGraph G, int s) {
-		visited = new boolean[G.edges().size()];
+		visited = new boolean[G.nodes().size()];
+		distance = new int[G.nodes().size()];
+		edgeTo = new int[G.nodes().size()];
 		bfs(G, s);
 	}
 
@@ -28,6 +31,8 @@ public class BreadthFirstPaths {
 				if (!visited[w]) {
 					queue.offer(w);
 					visited[w] = true;
+					distance[w] = distance[v] + 1;
+					edgeTo[w] = v;
 				}
 			}
 		}
@@ -35,6 +40,27 @@ public class BreadthFirstPaths {
 
 	public boolean[] visited() {
 		return this.visited;
+	}
+
+	public int[] distance() {
+		return this.distance;
+	}
+
+	public boolean hasPathTo(int w) {
+		return this.visited[w];
+	}
+
+	public Iterable<Integer> pathTo(int w) {
+		if (!hasPathTo(w)) {
+			return null;
+		}
+		Stack<Integer> path = new Stack<Integer>();
+		int x;
+		for (x = w; distance[x] != 0; x = edgeTo[x]) {
+			path.push(x);
+		}
+		path.push(x);
+		return path;
 	}
 
 }
