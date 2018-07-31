@@ -4,6 +4,7 @@ import com.google.common.graph.Graphs;
 import com.google.common.graph.ImmutableGraph;
 import com.google.common.graph.MutableGraph;
 import javafx.util.Pair;
+import week_1.lectures.directed_graphs.TopologicalSort;
 import week_1.lectures.undirected_graphs.BreadthFirstPaths;
 import week_1.lectures.undirected_graphs.DepthFirstPaths;
 
@@ -52,7 +53,23 @@ public class DirectedGraphsQuiz {
 	 *         if one exists, null otherwise
 	 */
 	public static int[] hamiltonianPath(ImmutableGraph G) {
-		return null;
+		TopologicalSort graphSort = new TopologicalSort(G);
+		Stack<Integer> graphOrder = graphSort.reversePost();
+		int[] path = new int[G.nodes().size()];
+
+		int index = 0, first, second = graphOrder.pop();
+		while (!graphOrder.isEmpty()) {
+			first = second;
+			if (!graphOrder.isEmpty()) {
+				second = graphOrder.pop();
+				if (!G.adjacentNodes(first).contains(second)) {
+					return null;
+				}
+				path[index] = second;
+				index++;
+			}
+		}
+		return path;
 	}
 
 }
