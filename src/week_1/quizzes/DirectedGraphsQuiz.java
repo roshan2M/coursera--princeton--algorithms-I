@@ -1,12 +1,8 @@
 package week_1.quizzes;
 
-import com.google.common.graph.Graphs;
-import com.google.common.graph.ImmutableGraph;
-import com.google.common.graph.MutableGraph;
-import javafx.util.Pair;
+import com.google.common.graph.*;
 import week_1.lectures.directed_graphs.TopologicalSort;
 import week_1.lectures.undirected_graphs.BreadthFirstPaths;
-import week_1.lectures.undirected_graphs.DepthFirstPaths;
 
 import java.util.Stack;
 
@@ -53,21 +49,22 @@ public class DirectedGraphsQuiz {
 	 *         if one exists, null otherwise
 	 */
 	public static int[] hamiltonianPath(ImmutableGraph G) {
-		TopologicalSort graphSort = new TopologicalSort(G);
-		Stack<Integer> graphOrder = graphSort.reversePost();
+		Stack<Integer> graphOrder = (new TopologicalSort(G)).reversePost();
 		int[] path = new int[G.nodes().size()];
 
-		int index = 0, first, second = graphOrder.pop();
+		int index = 0;
+		int first = graphOrder.pop();
+		int second;
 		while (!graphOrder.isEmpty()) {
-			first = second;
-			if (!graphOrder.isEmpty()) {
-				second = graphOrder.pop();
-				if (!G.adjacentNodes(first).contains(second)) {
-					return null;
-				}
-				path[index] = second;
-				index++;
+			second = graphOrder.pop();
+			boolean isAdjacentTo = false;
+			for (Object i : G.adjacentNodes(first)) {
+				isAdjacentTo = isAdjacentTo || (int) i == second;
 			}
+			if (!isAdjacentTo) return null;
+			path[index] = first;
+			first = second;
+			index++;
 		}
 		return path;
 	}
