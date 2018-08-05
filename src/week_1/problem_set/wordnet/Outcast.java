@@ -1,8 +1,5 @@
 package week_1.problem_set.wordnet;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdOut;
-
 /*********
  *
  * @author Roshan Munjal
@@ -10,6 +7,9 @@ import edu.princeton.cs.algs4.StdOut;
  * Outcast Module API.
  *
  *********/
+
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 
 public class Outcast {
 
