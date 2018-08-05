@@ -15,6 +15,7 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SAP {
 
@@ -44,7 +45,7 @@ public class SAP {
 			if (bfsV.hasPathTo(i) && bfsW.hasPathTo(i)) {
 				int length = bfsV.distTo(i) + bfsW.distTo(i);
 
-				if (bfsV.distTo(i) + bfsW.distTo(i) < shortestPathLength) {
+				if (length < shortestPathLength) {
 					shortestPathLength = length;
 					closestAncestor = i;
 				}
@@ -57,13 +58,13 @@ public class SAP {
 
 	// length of shortest ancestral path between v and w; -1 if no such path
 	public int length(int v, int w) {
-		int[] result = shortestAncestralPath(new ArrayList<>(v), new ArrayList<>(w));
+		int[] result = shortestAncestralPath(new ArrayList<>(Arrays.asList(v)), new ArrayList<>(Arrays.asList(w)));
 		return result[0];
 	}
 
 	// a common ancestor of v and w that participates in a shortest ancestral path; -1 if no such path
 	public int ancestor(int v, int w) {
-		int[] result = shortestAncestralPath(new ArrayList<>(v), new ArrayList<>(w));
+		int[] result = shortestAncestralPath(new ArrayList<>(Arrays.asList(v)), new ArrayList<>(Arrays.asList(w)));
 		return result[1];
 	}
 
