@@ -21,7 +21,7 @@ public class SAP {
 
 	private static final int INFINITY = Integer.MAX_VALUE;
 
-	private Digraph digraph;
+	private final Digraph digraph;
 
 	// constructor takes a digraph (not necessarily a DAG)
 	public SAP(Digraph givenDigraph) {

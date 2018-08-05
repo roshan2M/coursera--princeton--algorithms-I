@@ -17,10 +17,10 @@ import edu.princeton.cs.algs4.In;
 
 public class WordNet {
 
-	private HashMap<Integer, String> idToSynset = new HashMap<>();
-	private HashMap<String, ArrayList<Integer>> synonymToId = new HashMap<>();
-	private Digraph wordnetGraph;
-	private SAP shortestAncestralPath;
+	private final HashMap<Integer, String> idToSynset = new HashMap<>();
+	private final HashMap<String, ArrayList<Integer>> synonymToId = new HashMap<>();
+	private final Digraph wordnetGraph;
+	private final SAP shortestAncestralPath;
 
 	// constructor takes the name of the two input files
 	public WordNet(String synsets, String hypernyms) {
@@ -33,7 +33,7 @@ public class WordNet {
 		// Build synsets to ids.
 		while (!synsetsIn.isEmpty()) {
 			String[] values = synsetsIn.readLine().split(",");
-			int givenId = Integer.valueOf(values[0]);
+			int givenId = Integer.parseInt(values[0]);
 			String givenSynset = values[1];
 			idToSynset.put(givenId, givenSynset);
 			String[] synonyms = givenSynset.split(" ");
@@ -50,10 +50,10 @@ public class WordNet {
 		wordnetGraph = new Digraph(idToSynset.size());
 		while (!hypernymsIn.isEmpty()) {
 			String[] values = hypernymsIn.readLine().split(",");
-			int synset = Integer.valueOf(values[0]);
+			int synset = Integer.parseInt(values[0]);
 
 			for (int i = 1; i < values.length; i++) {
-				wordnetGraph.addEdge(synset, Integer.valueOf(values[i]));
+				wordnetGraph.addEdge(synset, Integer.parseInt(values[i]));
 			}
 		}
 
