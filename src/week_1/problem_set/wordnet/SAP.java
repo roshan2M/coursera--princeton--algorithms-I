@@ -27,7 +27,7 @@ public class SAP {
 		this.digraph = givenDigraph;
 	}
 
-	private int[] shortestPath(Iterable<Integer> v, Iterable<Integer> w) {
+	private int[] shortestAncestralPath(Iterable<Integer> v, Iterable<Integer> w) {
 		int[] result = new int[2];
 
 		// BFS takes O(V+E) time and O(V) space.
@@ -54,25 +54,25 @@ public class SAP {
 
 	// length of shortest ancestral path between v and w; -1 if no such path
 	public int length(int v, int w) {
-		int[] result = shortestPath(new ArrayList<>(v), new ArrayList<>(w));
+		int[] result = shortestAncestralPath(new ArrayList<>(v), new ArrayList<>(w));
 		return result[0];
 	}
 
 	// a common ancestor of v and w that participates in a shortest ancestral path; -1 if no such path
 	public int ancestor(int v, int w) {
-		int[] result = shortestPath(new ArrayList<>(v), new ArrayList<>(w));
+		int[] result = shortestAncestralPath(new ArrayList<>(v), new ArrayList<>(w));
 		return result[1];
 	}
 
 	// length of shortest ancestral path between any vertex in v and any vertex in w; -1 if no such path
 	public int length(Iterable<Integer> v, Iterable<Integer> w) {
-		int[] result = shortestPath(v, w);
+		int[] result = shortestAncestralPath(v, w);
 		return result[0];
 	}
 
 	// a common ancestor that participates in shortest ancestral path; -1 if no such path
 	public int ancestor(Iterable<Integer> v, Iterable<Integer> w) {
-		int[] result = shortestPath(v, w);
+		int[] result = shortestAncestralPath(v, w);
 		return result[1];
 	}
 
