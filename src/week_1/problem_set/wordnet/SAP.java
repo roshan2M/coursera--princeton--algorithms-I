@@ -24,7 +24,7 @@ public class SAP {
 		if (givenDigraph == null) {
 			throw new IllegalArgumentException("Graph cannot be null.");
 		}
-		this.digraph = givenDigraph;
+		digraph = givenDigraph;
 	}
 
 	private int[] shortestAncestralPath(Iterable<Integer> v, Iterable<Integer> w) {
