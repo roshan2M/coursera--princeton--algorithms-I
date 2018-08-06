@@ -5,17 +5,18 @@ import edu.princeton.cs.algs4.*;
 public class KruskalMST {
 
 	// Used to represent the MST.
-	private Queue<Edge> mst = new Queue<>();
+	private Queue<Edge> mst;
+	private MinPQ<Edge> pq;
 
 	public KruskalMST(EdgeWeightedGraph graph) {
-		// Priority queue sorts by edge weights.
-		MinPQ<Edge> pq = new MinPQ<>();
+		mst = new Queue<>();
+		pq = new MinPQ<>(); // Priority queue sorts by edge weights.
 		for (Edge e : graph.edges()) {
 			pq.insert(e);
 		}
 
 		UF uf = new UF(graph.V());
-		while (!pq.isEmpty() && mst.size() < graph.V() - 1) {
+		while (!pq.isEmpty() && mst.size() < graph.V()-1) {
 			Edge e = pq.delMin();
 			int v = e.either();
 			int w = e.other(v);
