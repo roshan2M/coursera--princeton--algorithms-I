@@ -1,6 +1,6 @@
 package week_1.lectures.directed_graphs;
 
-import com.google.common.graph.ImmutableGraph;
+import edu.princeton.cs.algs4.EdgeWeightedDigraph;
 
 import java.util.Stack;
 
@@ -10,24 +10,24 @@ public class TopologicalSort {
 	private Stack<Integer> reversePost;
 	private int[] edgeTo;
 
-	public TopologicalSort(ImmutableGraph G) {
-		edgeTo = new int[G.nodes().size()];
-		visited = new boolean[G.nodes().size()];
+	public TopologicalSort(EdgeWeightedDigraph G) {
+		edgeTo = new int[G.V()];
+		visited = new boolean[G.V()];
 		reversePost = new Stack<>();
 
-		for (Object i : G.nodes()) {
-			if (!visited[(int) i]) {
-				dfs(G, (int) i);
+		for (int i = 0; i < G.V(); i++) {
+			if (!visited[i]) {
+				dfs(G, i);
 			}
 		}
 	}
 
-	private void dfs(ImmutableGraph G, int v) {
+	private void dfs(EdgeWeightedDigraph G, int v) {
 		visited[v] = true;
-		for (Object i : G.adjacentNodes(v)) {
-			if (!visited[(int) i]) {
-				edgeTo[(int) i] = v;
-				dfs(G, (int) i);
+		for (int i = 0; i < G.V(); i++) {
+			if (!visited[i]) {
+				edgeTo[i] = v;
+				dfs(G, i);
 			}
 		}
 		reversePost.push(v);
